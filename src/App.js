@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Editor from "./Editor/Editor";
@@ -22,10 +22,11 @@ function App() {
   );
   const [showDelete, setShowDelete] = useState(false);
 
-  // useEffect(() => {
-  //   localStorage.setItem("localFiles", JSON.stringify(Files));
-  //   localStorage.setItem("localFiles", JSON.stringify(files));
-  // }, [files]);
+  useEffect(() => {
+    localStorage.setItem("localFiles", JSON.stringify(Files));
+    localStorage.setItem("localFiles", JSON.stringify(files));
+    console.log(localStorage.getItem("localFiles"));
+  }, [files]);
 
   // useEffect(() => {
   //   localStorage.setItem("darkmode", JSON.stringify(darkmode));
