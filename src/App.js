@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Editor from "./Editor/Editor";
@@ -8,29 +8,32 @@ import Files from "./Files";
 
 function App() {
   const [darkmode, setdarkMode] = useState(
-    JSON.parse(localStorage.getItem("darkmode"))
+    false
+    // JSON.parse(localStorage.getItem("darkmode"))
   );
   const [menu, setMenu] = useState(false);
   const [files, setFiles] = useState(
-    JSON.parse(localStorage.getItem("localFiles"))
+    [...Files]
+    // JSON.parse(localStorage.getItem("localFiles"))
   );
   const [current, setCurrent] = useState(
-    JSON.parse(localStorage.getItem("current"))
+    1
+    // JSON.parse(localStorage.getItem("current"))
   );
   const [showDelete, setShowDelete] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem("localFiles", JSON.stringify(Files));
-    localStorage.setItem("localFiles", JSON.stringify(files));
-  }, [files]);
+  // useEffect(() => {
+  //   localStorage.setItem("localFiles", JSON.stringify(Files));
+  //   localStorage.setItem("localFiles", JSON.stringify(files));
+  // }, [files]);
 
-  useEffect(() => {
-    localStorage.setItem("darkmode", JSON.stringify(darkmode));
-  }, [darkmode]);
+  // useEffect(() => {
+  //   localStorage.setItem("darkmode", JSON.stringify(darkmode));
+  // }, [darkmode]);
 
-  useEffect(() => {
-    localStorage.setItem("current", JSON.stringify(current));
-  }, [current]);
+  // useEffect(() => {
+  //   localStorage.setItem("current", JSON.stringify(current));
+  // }, [current]);
 
   return (
     <div
