@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Editor from "./Editor/Editor";
@@ -7,25 +7,18 @@ import Delete from "./Delete/Delete";
 import Files from "./Files";
 
 function App() {
-  const [darkmode, setdarkMode] = useState(
-    false
-    // JSON.parse(localStorage.getItem("darkmode"))
-  );
+  const [darkmode, setdarkMode] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [files, setFiles] = useState(
-    [...Files]
-    // JSON.parse(localStorage.getItem("localFiles"))
-  );
-  const [current, setCurrent] = useState(
-    1
-    // JSON.parse(localStorage.getItem("current"))
-  );
+  const [files, setFiles] = useState([...Files]);
+  const [current, setCurrent] = useState(1);
   const [showDelete, setShowDelete] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem("localFiles", JSON.stringify(Files));
-    localStorage.setItem("localFiles", JSON.stringify(files));
-  }, [files]);
+  // JSON.parse(localStorage.getItem("localFiles"))
+
+  // useEffect(() => {
+  //   localStorage.setItem("localFiles", JSON.stringify(Files));
+  //   localStorage.setItem("localFiles", JSON.stringify(files));
+  // }, [files]);
 
   console.log(files);
 
