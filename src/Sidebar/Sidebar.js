@@ -43,8 +43,6 @@ const Sidebar = (props) => {
     return date[1] + " " + months[parseInt(date[0]) - 1] + " " + date[2];
   };
 
-  console.log(files);
-
   return (
     <section className={!menu ? "sideMenu" : "sideMenu active"}>
       <div className="topSide">

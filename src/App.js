@@ -25,8 +25,9 @@ function App() {
   useEffect(() => {
     localStorage.setItem("localFiles", JSON.stringify(Files));
     localStorage.setItem("localFiles", JSON.stringify(files));
-    console.log(localStorage.getItem("localFiles"));
   }, [files]);
+
+  console.log(files);
 
   // useEffect(() => {
   //   localStorage.setItem("darkmode", JSON.stringify(darkmode));
