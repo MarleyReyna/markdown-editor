@@ -1,0 +1,209 @@
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeInSave{
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    background-color: #2B2D31;
+    
+    .leftContainer{
+        display: flex;
+        align-items: center;
+        
+        button{
+            border: none;
+            max-height: 3.5rem;
+            margin-right: 1.5rem;
+            background-color: #35393F;
+            padding: 1.3125rem 1rem 1.3125rem 1.0625rem;
+            transition: all 300ms ease;
+
+            img{
+                width: 23px;
+                height: 14px;
+            }
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: #E46643;
+        }
+
+        .logo{
+            display: none;
+        }
+
+        .seperator{
+            display: none;
+            position: relative;
+            width: 1px;
+            height: 2.5rem;
+            background: #5A6069;
+            margin: 0 1.5rem 0 1.8125rem;
+        }
+
+        .file-name{
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 0 1rem;
+
+            input{
+                font-size: 15px;
+                line-height: 18px;
+                font-weight: 400;
+                border: none;
+                color: white;
+                caret-color: #E46643;
+                background-color: transparent;
+            }
+
+            :focus{
+                outline: none;
+                border-bottom: white 1px solid;
+            }
+
+            p{
+                display: none;
+                font-size: 13px;
+                line-height: 15px;
+                font-weight: 300;
+                color: #7C8187;
+                margin-bottom: .1875rem;
+            }
+        }
+    }
+
+    .rightContainer{
+        display: flex;
+        align-items: center;
+        margin-right: .5rem;
+
+
+        .trash{
+            padding: 0;
+            margin-right: 1.5rem;
+            border: none;
+            background-color: transparent;
+            transition: all 200ms ease;
+        }
+
+        .trash:hover{
+            cursor: pointer;
+            filter: invert(53%) sepia(16%) saturate(2276%) hue-rotate(325deg) brightness(92%) contrast(93%);
+        }
+
+        .save{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0px;
+            line-height: 18px;
+            padding: .6875rem;
+            min-width: 2.4375rem;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #E46643;
+            transition: all 300ms ease;
+
+            img{
+                animation: fadeInSave 500ms ease;
+            }
+
+            .check{
+                font-size: 1rem;
+                color: white;
+                animation: fadeIn 500ms ease;
+            }
+        }
+
+        .save:hover{
+            cursor: pointer;
+            background-color: #F39765;
+        }
+    }
+}
+
+@media only screen and (min-width: 48rem){
+    .header{
+        .leftContainer{
+            button{
+                max-height: none;
+                padding: 1.6875rem 1.3125rem;
+
+                img{
+                    width: 1.875rem;
+                    height: auto;
+                }
+            }
+
+            .file-name{
+                input{
+                    width: 13.4375rem;
+                }
+
+                p {
+                    display: initial;
+                }
+            }
+        }
+
+        .rightContainer{
+            margin-right: 1rem;
+
+            .save{
+                font-size: 15px;
+
+                img{
+                    margin-right: .5rem;
+                }
+
+                .check{
+                    margin-right: .5rem;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 64rem){
+    .header{
+        .leftContainer{
+            .logo{
+                display: initial;
+            }
+
+            .seperator{
+                display: initial;
+            }
+
+            .file-name{
+                input{
+                    width: 26.875rem;
+                }
+            }
+        }
+    }
+}

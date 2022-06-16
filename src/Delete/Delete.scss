@@ -1,0 +1,64 @@
+.delete{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 21.4375rem;
+    border-radius: 4px;
+    padding: 1.5rem;
+    z-index: 10;
+    background-color: white;
+    font-family: 'Roboto Slab';
+
+    h1{
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 700;
+        color: #35393F;
+    }
+
+    p{
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        max-width: 18.4375rem;
+        color: #7C8187;
+        margin: 1rem 0;
+    }
+
+    button{
+        width: 100%;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 400;
+        color: #FFFFFF;
+        background: #E46643;
+        border-radius: 4px;
+        border: none;
+        padding: .625rem 0 .75rem;
+        font-family: 'Roboto Slab';
+        transition: background 300ms ease;
+    }
+
+    button:hover{
+        cursor: pointer;
+        background: #F39765;
+    }
+}
+
+.delete.active{
+    display: initial;
+}
+
+#deleteDark{
+    background: #1D1F22;
+
+    h1{
+        color: white;
+    }
+
+    p{
+        color: #C1C4CB;
+    }
+}
