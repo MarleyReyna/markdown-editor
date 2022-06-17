@@ -1,38 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.scss";
 import Header from "./Header/Header";
 import Editor from "./Editor/Editor";
 import Sidebar from "./Sidebar/Sidebar";
 import Delete from "./Delete/Delete";
 import Files from "./Files";
+import useLocalStorage from "./useLocalStorage";
 
 function App() {
-  const [darkmode, setdarkMode] = useState(
-    JSON.parse(localStorage.getItem("darkmode"))
-  );
+  const [darkmode, setdarkMode] = useLocalStorage("darkmode", false);
   const [menu, setMenu] = useState(false);
-  const [files, setFiles] = useState(
-    JSON.parse(localStorage.getItem("localFiles"))
-  );
-  const [current, setCurrent] = useState(
-    JSON.parse(localStorage.getItem("current"))
-  );
+  const [files, setFiles] = useLocalStorage("localFiles", [...Files]);
+  const [current, setCurrent] = useLocalStorage("current", 1);
   const [showDelete, setShowDelete] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("localFiles", JSON.stringify(Files));
-    localStorage.setItem("localFiles", JSON.stringify(files));
-  }, [files]);
-
-  useEffect(() => {
-    localStorage.setItem("darkmode", false);
-    localStorage.setItem("darkmode", JSON.stringify(darkmode));
-  }, [darkmode]);
-
-  useEffect(() => {
-    localStorage.setItem("current", 1);
-    localStorage.setItem("current", JSON.stringify(current));
-  }, [current]);
 
   return (
     <div
