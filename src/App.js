@@ -9,7 +9,6 @@ import useLocalStorage from "./useLocalStorage";
 
 function App() {
   const [darkmode, setdarkMode] = useLocalStorage("darkmode", false);
-  const [menu, setMenu] = useState(false);
   const [files, setFiles] = useLocalStorage("localFiles", [...Files]);
   const [current, setCurrent] = useLocalStorage("current", 1);
   const [showDelete, setShowDelete] = useState(false);
@@ -22,7 +21,6 @@ function App() {
       <Sidebar
         darkmode={darkmode}
         setdarkMode={setdarkMode}
-        menu={menu}
         files={files}
         setFiles={setFiles}
         setCurrent={setCurrent}
@@ -36,10 +34,9 @@ function App() {
         showDelete={showDelete}
         setShowDelete={setShowDelete}
       />
-      <section className={!menu ? "main-section" : "main-section menu"}>
+      <section className="main-section">
         <Header
           darkmode={darkmode}
-          setMenu={setMenu}
           files={files}
           setFiles={setFiles}
           current={current}
@@ -48,7 +45,6 @@ function App() {
         <Editor
           darkmode={darkmode}
           setdarkMode={setdarkMode}
-          menu={menu}
           files={files}
           current={current}
           setFiles={setFiles}

@@ -8,7 +8,8 @@
     min-width: 15.625rem;
     background: #1D1F22;
     padding: 1.6875rem 1.5rem 2rem;
-    transition: all 600ms ease;
+    transition: 600ms ease;
+    transition: position, left;
 
     .topSide{
         .sideLogo{
@@ -114,7 +115,7 @@
                 border-radius: 50%;
                 margin-left: auto;
                 background-color: white;
-                transition: all 750ms ease;
+                transition: transform 750ms ease;
             }
         }
 
@@ -128,7 +129,6 @@
     }
         
     .darkContainer.active{
-
         .moon{
             filter: invert(100%);
         }

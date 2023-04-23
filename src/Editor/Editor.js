@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import "./Editor.scss";
+import $ from "jquery";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const Editor = (props) => {
-  const darkmode = props.darkmode;
-  const menu = props.menu;
-  const current = props.current;
-  const files = props.files;
-  const setFiles = props.setFiles;
-
+const Editor = ({ darkmode, current, files, setFiles }) => {
   const [show, setShow] = useState(false);
 
   const changeMarkdown = (e) => {
     e.preventDefault();
     const filesCopy = [...files];
-    const markdownInput = document.getElementById("markdownarea").value;
-    filesCopy[current].content = markdownInput;
+    filesCopy[current].content = $("#markdownarea").val();
+
     setFiles(filesCopy);
   };
 
@@ -40,7 +35,7 @@ const Editor = (props) => {
       </div>
       <div
         className={!show ? "preview" : "preview active"}
-        id={menu && show ? "previewMenu" : "preview"}
+        id={show ? "previewMenu" : "preview"}
       >
         <div className="top">
           <h2>Preview</h2>

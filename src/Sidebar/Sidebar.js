@@ -1,27 +1,21 @@
 import React from "react";
 import "./Sidebar.scss";
 
-const Sidebar = (props) => {
-  const darkmode = props.darkmode;
-  const setdarkMode = props.setdarkMode;
-  const menu = props.menu;
-  const files = props.files;
-  const setFiles = props.setFiles;
-  const setCurrent = props.setCurrent;
-
+const Sidebar = ({ darkmode, setdarkMode, files, setFiles, setCurrent }) => {
   const createDocument = () => {
+    // Create new file object
     let utc = new Date();
     let date =
       utc.getMonth() + 1 + "-" + utc.getDate() + "-" + utc.getFullYear();
-    const filesCopy = [...files];
     const newDoc = {
       createdAt: date,
       name: "untitled-document.md",
       content: "",
     };
-    filesCopy.push(newDoc);
-    setCurrent(filesCopy.indexOf(newDoc));
-    setFiles(filesCopy);
+
+    // Sets current index to new file and appends it to the end
+    setCurrent(files.length);
+    setFiles((file) => [...file, newDoc]);
   };
 
   const getDate = (c) => {
@@ -44,7 +38,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <section className={!menu ? "sideMenu" : "sideMenu active"}>
+    <section className="sideMenu">
       <div className="topSide">
         <img src="/assets/logo.svg" alt="Markdown" className="sideLogo" />
         <h1>My documents</h1>

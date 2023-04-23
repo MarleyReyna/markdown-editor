@@ -21,13 +21,13 @@
 
   .main-section{
     width: 100%;
-    transition: all 500ms ease;
+    transition: transform 500ms ease;
   }
 
   .main-section.menu{
     flex-shrink: 0;
     transform: translateX(250px);
-    transition: all 500ms ease;
+    transition: transform 500ms ease;
   }
 }
 

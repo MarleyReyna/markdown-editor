@@ -1,35 +1,30 @@
 import React, { useState } from "react";
+import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 
-const Header = (props) => {
-  const darkmode = props.darkmode;
-  const setMenu = props.setMenu;
-  const files = props.files;
-  const setFiles = props.setFiles;
-  const current = props.current;
-  const setShowDelete = props.setShowDelete;
-
+const Header = ({ darkmode, files, setFiles, current, setShowDelete }) => {
   const [saved, setSaved] = useState(false);
 
   const submitTitle = () => {
     const filesCopy = [...files];
-    const titleInput = document.getElementById("titleInput").value;
-    filesCopy[current].name = titleInput;
+    filesCopy[current].name = $("#titleInput").val();
     setFiles(filesCopy);
   };
 
   const saveDocument = () => {
-    setSaved(true);
+    // Make a copy of the current files and update state
     const filesCopy = [...files];
-    const titleInput = document.getElementById("titleInput").value;
-    const markdownInput = document.getElementById("markdownarea").value;
-    filesCopy[current].name = titleInput;
-    filesCopy[current].content = markdownInput;
+    filesCopy[current].name = $("#titleInput").val();
+    filesCopy[current].content = $("#markdownarea").val();
     setFiles(filesCopy);
+
+    // Apply changes to saved state to initiate
+    setSaved((c) => (c = true));
+
     setTimeout(() => {
-      setSaved(false);
+      setSaved((c) => (c = false));
     }, 1250);
   };
 
@@ -40,7 +35,7 @@ const Header = (props) => {
   return (
     <header className={darkmode ? "header dark" : "header"}>
       <div className="leftContainer">
-        <button onClick={() => setMenu((c) => !c)}>
+        <button onClick={showSideMenu}>
           <img src="/assets/icon-menu.svg" alt="menu" />
         </button>
         <img src="/assets/logo.svg" alt="Markdown" className="logo" />
@@ -80,3 +75,8 @@ const Header = (props) => {
 };
 
 export default Header;
+
+export const showSideMenu = () => {
+  $(".sideMenu").toggleClass("active");
+  $(".main-section").toggleClass("menu");
+};
