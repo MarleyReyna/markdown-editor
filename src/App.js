@@ -1,12 +1,12 @@
 import React, { useState, Suspense } from "react";
 import "./App.scss";
-import Header from "./Header/Header";
-import Editor from "./Editor/Editor";
+import Header from "./Components/Header/Header";
+import Editor from "./Components/Editor/Editor";
 import Files from "./Files";
 import useLocalStorage from "./useLocalStorage";
 
-const Sidebar = React.lazy(() => import("./Sidebar/Sidebar"));
-const Delete = React.lazy(() => import("./Delete/Delete"));
+const Sidebar = React.lazy(() => import("./Components/Sidebar/Sidebar"));
+const Delete = React.lazy(() => import("./Components/Delete/Delete"));
 
 function App() {
   const [darkmode, setdarkMode] = useLocalStorage("darkmode", false);
@@ -19,7 +19,7 @@ function App() {
       className={showDelete ? "App deleteShown" : "App"}
       id={darkmode ? "darkModeApp" : "App"}
     >
-      <Suspense fallback={<p>...Loading</p>}>
+      <Suspense fallback={null}>
         <Sidebar
           darkmode={darkmode}
           setdarkMode={setdarkMode}
@@ -28,7 +28,7 @@ function App() {
           setCurrent={setCurrent}
         />
       </Suspense>
-      <Suspense fallback={<p>...Loading</p>}>
+      <Suspense fallback={null}>
         <Delete
           darkmode={darkmode}
           files={files}
