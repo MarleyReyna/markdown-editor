@@ -1,16 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
+import { useSelector, useDispatch } from "react-redux";
+import { setShowDelete, setShowDeleteFalse } from "../../Redux/showDeleteSlice";
 import "./Delete.scss";
 
-const Delete = ({
-  darkmode,
-  files,
-  setFiles,
-  current,
-  setCurrent,
-  showDelete,
-  setShowDelete,
-}) => {
+const Delete = ({ files, setFiles, current, setCurrent }) => {
+  const dispatch = useDispatch();
+  const darkmode = useSelector((state) => state.darkmode.darkmode);
+  const showDelete = useSelector((state) => state.showDelete.showDelete);
+
   const styleProps = useSpring({
     opacity: showDelete ? 1 : 0,
   });
@@ -18,7 +16,7 @@ const Delete = ({
   const deleteFile = () => {
     //  Preventing the user from deleting a file if only one exists
     if (files.length === 1) {
-      setShowDelete((c) => (c = false));
+      dispatch(setShowDelete());
       return;
     }
 
@@ -30,7 +28,7 @@ const Delete = ({
     });
 
     // Helper state to change styling(could just use jquery)
-    setShowDelete((c) => (c = false));
+    dispatch(setShowDelete());
 
     // Sets current file to the previous file
     if (current === files.length - 1) {
@@ -43,7 +41,7 @@ const Delete = ({
   useEffect(() => {
     let handler = (e) => {
       if (!deleteRef.current?.contains(e.target)) {
-        setShowDelete(false);
+        dispatch(setShowDeleteFalse());
       }
     };
 

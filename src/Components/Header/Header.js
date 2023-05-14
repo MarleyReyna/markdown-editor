@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import $ from "jquery";
+import { useSelector, useDispatch } from "react-redux";
+import { setShowDelete } from "../../Redux/showDeleteSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 
-const Header = ({ darkmode, files, setFiles, current, setShowDelete }) => {
+const Header = ({ files, setFiles, current }) => {
   const [saved, setSaved] = useState(false);
+  const dispatch = useDispatch();
+  const darkmode = useSelector((state) => state.darkmode.darkmode);
 
   const submitTitle = () => {
     const filesCopy = [...files];
@@ -46,19 +50,18 @@ const Header = ({ darkmode, files, setFiles, current, setShowDelete }) => {
           onChange={submitTitle}
           onSubmit={handleSubmit}
         >
-          <p>Document Name</p>
+          <label htmlFor="titleInput">Document Name</label>
           <input
             id="titleInput"
+            name="titleInput"
+            type="text"
             value={files[current].name}
             onChange={submitTitle}
           />
         </form>
       </div>
       <div className="rightContainer">
-        <button
-          className="trash"
-          onClick={() => setShowDelete((c) => (c = true))}
-        >
+        <button className="trash" onClick={() => dispatch(setShowDelete())}>
           <img src="/assets/icon-delete.svg" alt="delete" />
         </button>
         <button className="save" onClick={saveDocument}>

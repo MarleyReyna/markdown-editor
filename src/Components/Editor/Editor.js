@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setShowMarkdown } from "../../Redux/showMarkdownSlice";
 import "./Editor.scss";
 import $ from "jquery";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const Editor = ({ darkmode, current, files, setFiles }) => {
-  const [show, setShow] = useState(false);
+const Editor = ({ current, files, setFiles }) => {
+  const show = useSelector((state) => state.showMarkdown.showMarkdown);
+  const darkmode = useSelector((state) => state.darkmode.darkmode);
+  const dispatch = useDispatch();
 
   const changeMarkdown = (e) => {
     e.preventDefault();
@@ -20,10 +24,13 @@ const Editor = ({ darkmode, current, files, setFiles }) => {
       <div className={!show ? "markdown active" : "markdown"}>
         <div className="top">
           <h2>Markdown</h2>
-          <button onClick={() => setShow((c) => (c = true))}>
+          <button onClick={() => dispatch(setShowMarkdown())}>
             <img src="assets/icon-show-preview.svg" alt="show" />
           </button>
         </div>
+        <label className="sr-only" htmlFor="markdownarea">
+          Markdown
+        </label>
         <textarea
           value={files[current].content}
           onChange={(e) => changeMarkdown(e)}
@@ -39,7 +46,7 @@ const Editor = ({ darkmode, current, files, setFiles }) => {
       >
         <div className="top">
           <h2>Preview</h2>
-          <button onClick={() => setShow((c) => !c)}>
+          <button onClick={() => dispatch(setShowMarkdown())}>
             <img
               src={
                 show

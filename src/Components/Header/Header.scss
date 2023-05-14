@@ -86,13 +86,13 @@
                 border-bottom: white 1px solid;
             }
 
-            p{
-                display: none;
-                font-size: 13px;
-                line-height: 15px;
-                font-weight: 300;
-                color: #7C8187;
-                margin-bottom: .1875rem;
+            label{
+                position:absolute;
+                left:-10000px;
+                top:auto;
+                width:1px;
+                height:1px;
+                overflow:hidden;
             }
         }
     }
@@ -166,8 +166,18 @@
                     width: 13.4375rem;
                 }
 
-                p {
-                    display: initial;
+                label {
+                    position: initial;
+                    left: initial;
+                    top: initial;
+                    width: initial;
+                    height: initial;
+                    overflow: initial;
+                    font-size: 13px;
+                    line-height: 15px;
+                    font-weight: 300;
+                    color: #7C8187;
+                    margin-bottom: .1875rem;
                 }
             }
         }

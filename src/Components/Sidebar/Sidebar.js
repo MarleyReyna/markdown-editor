@@ -1,7 +1,13 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFiles, setCurrent } from "../../Redux/filesSlice";
 import "./Sidebar.scss";
+import { setDarkmode } from "../../Redux/darkmodeSlice";
 
-const Sidebar = ({ darkmode, setdarkMode, files, setFiles, setCurrent }) => {
+const Sidebar = ({ files, setFiles }) => {
+  const dispatch = useDispatch();
+  const darkmode = useSelector((state) => state.darkmode.darkmode);
+
   const createDocument = () => {
     // Create new file object
     let utc = new Date();
@@ -14,7 +20,7 @@ const Sidebar = ({ darkmode, setdarkMode, files, setFiles, setCurrent }) => {
     };
 
     // Sets current index to new file and appends it to the end
-    setCurrent(files.length);
+    dispatch(setCurrent(files.length));
     setFiles((file) => [...file, newDoc]);
   };
 
@@ -65,8 +71,9 @@ const Sidebar = ({ darkmode, setdarkMode, files, setFiles, setCurrent }) => {
           className="moon"
           alt="dark mode"
         />
-        <button onClick={() => setdarkMode((c) => !c)}>
+        <button className="darkToggle" onClick={() => dispatch(setDarkmode())}>
           <div className="circle" />
+          Toggle Darkmode
         </button>
         <img
           src="/assets/icon-light-mode.svg"
