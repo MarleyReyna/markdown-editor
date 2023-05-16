@@ -1,22 +1,24 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowMarkdown } from "../../Redux/showMarkdownSlice";
-import "./Editor.scss";
+import { setFiles } from "../../Redux/filesSlice";
 import $ from "jquery";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const Editor = ({ current, files, setFiles }) => {
+const Editor = () => {
+  const dispatch = useDispatch();
   const show = useSelector((state) => state.showMarkdown.showMarkdown);
   const darkmode = useSelector((state) => state.darkmode.darkmode);
-  const dispatch = useDispatch();
+  const files = useSelector((state) => state.files.files);
+  const current = useSelector((state) => state.files.current);
 
   const changeMarkdown = (e) => {
     e.preventDefault();
-    const filesCopy = [...files];
+    const filesCopy = JSON.parse(JSON.stringify(files));
     filesCopy[current].content = $("#markdownarea").val();
 
-    setFiles(filesCopy);
+    dispatch(setFiles(filesCopy));
   };
 
   return (

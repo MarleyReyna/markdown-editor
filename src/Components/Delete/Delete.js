@@ -2,12 +2,14 @@ import React, { useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowDelete, setShowDeleteFalse } from "../../Redux/showDeleteSlice";
-import "./Delete.scss";
+import { deleteFiles, setCurrent } from "../../Redux/filesSlice";
 
-const Delete = ({ files, setFiles, current, setCurrent }) => {
+const Delete = () => {
   const dispatch = useDispatch();
   const darkmode = useSelector((state) => state.darkmode.darkmode);
   const showDelete = useSelector((state) => state.showDelete.showDelete);
+  const files = useSelector((state) => state.files.files);
+  const current = useSelector((state) => state.files.current);
 
   const styleProps = useSpring({
     opacity: showDelete ? 1 : 0,
@@ -21,18 +23,14 @@ const Delete = ({ files, setFiles, current, setCurrent }) => {
     }
 
     // Removes current file
-    setFiles((files) => {
-      return files.filter((_, index) => {
-        return index !== current;
-      });
-    });
+    dispatch(deleteFiles(files[current].id));
 
     // Helper state to change styling(could just use jquery)
     dispatch(setShowDelete());
 
     // Sets current file to the previous file
     if (current === files.length - 1) {
-      setCurrent((c) => c - 1);
+      dispatch(setCurrent(current - 1));
     }
   };
 

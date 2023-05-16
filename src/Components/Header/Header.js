@@ -2,27 +2,29 @@ import React, { useState } from "react";
 import $ from "jquery";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowDelete } from "../../Redux/showDeleteSlice";
+import { setFiles } from "../../Redux/filesSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import "./Header.scss";
 
-const Header = ({ files, setFiles, current }) => {
+const Header = () => {
   const [saved, setSaved] = useState(false);
   const dispatch = useDispatch();
   const darkmode = useSelector((state) => state.darkmode.darkmode);
+  const files = useSelector((state) => state.files.files);
+  const current = useSelector((state) => state.files.current);
 
   const submitTitle = () => {
-    const filesCopy = [...files];
+    const filesCopy = JSON.parse(JSON.stringify(files));
     filesCopy[current].name = $("#titleInput").val();
-    setFiles(filesCopy);
+    dispatch(setFiles(filesCopy));
   };
 
   const saveDocument = () => {
     // Make a copy of the current files and update state
-    const filesCopy = [...files];
+    const filesCopy = JSON.parse(JSON.stringify(files));
     filesCopy[current].name = $("#titleInput").val();
     filesCopy[current].content = $("#markdownarea").val();
-    setFiles(filesCopy);
+    dispatch(setFiles(filesCopy));
 
     // Apply changes to saved state to initiate
     setSaved((c) => (c = true));
@@ -79,7 +81,7 @@ const Header = ({ files, setFiles, current }) => {
 
 export default Header;
 
-export const showSideMenu = () => {
+const showSideMenu = () => {
   $(".sideMenu").toggleClass("active");
   $(".main-section").toggleClass("menu");
 };

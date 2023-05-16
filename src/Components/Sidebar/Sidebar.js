@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFiles, setCurrent } from "../../Redux/filesSlice";
-import "./Sidebar.scss";
+import { addNewFile, setCurrent } from "../../Redux/filesSlice";
 import { setDarkmode } from "../../Redux/darkmodeSlice";
 
-const Sidebar = ({ files, setFiles }) => {
+const Sidebar = () => {
   const dispatch = useDispatch();
+  const files = useSelector((state) => state.files.files);
   const darkmode = useSelector((state) => state.darkmode.darkmode);
 
   const createDocument = () => {
@@ -13,6 +13,7 @@ const Sidebar = ({ files, setFiles }) => {
     let utc = new Date();
     let date =
       utc.getMonth() + 1 + "-" + utc.getDate() + "-" + utc.getFullYear();
+
     const newDoc = {
       createdAt: date,
       name: "untitled-document.md",
@@ -21,7 +22,7 @@ const Sidebar = ({ files, setFiles }) => {
 
     // Sets current index to new file and appends it to the end
     dispatch(setCurrent(files.length));
-    setFiles((file) => [...file, newDoc]);
+    dispatch(addNewFile(newDoc));
   };
 
   const getDate = (c) => {
@@ -56,7 +57,7 @@ const Sidebar = ({ files, setFiles }) => {
             return (
               <li key={index}>
                 <img src="/assets/icon-document.svg" alt="document" />
-                <button onClick={() => setCurrent(index)}>
+                <button onClick={() => dispatch(setCurrent(index))}>
                   <span>{getDate(item.createdAt)}</span>
                   {item.name}
                 </button>

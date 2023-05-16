@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import Files from "../Files";
 
 const files =
-  localStorage.getItem("localFiles") !== null
-    ? JSON.parse(localStorage.getItem("localFiles"))
+  localStorage.getItem("files") !== null
+    ? JSON.parse(localStorage.getItem("files"))
     : [...Files];
 const current =
   localStorage.getItem("current") !== null
@@ -26,6 +26,14 @@ export const filesSlice = createSlice({
       state.files = action.payload;
       setFilesToLocalStorage(state.files, state.current);
     },
+    addNewFile: (state, action) => {
+      state.files = [...state.files, action.payload];
+      setFilesToLocalStorage(state.files, state.current);
+    },
+    deleteFiles: (state) => {
+      state.files = state.files.filter((_, index) => index !== state.current);
+      setFilesToLocalStorage(state.files, state.current);
+    },
     setCurrent: (state, action) => {
       state.current = action.payload;
       setFilesToLocalStorage(state.files, state.current);
@@ -33,5 +41,6 @@ export const filesSlice = createSlice({
   },
 });
 
-export const { setFiles, setCurrent } = filesSlice.actions;
+export const { setFiles, addNewFile, deleteFiles, setCurrent } =
+  filesSlice.actions;
 export default filesSlice.reducer;
