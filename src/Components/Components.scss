@@ -397,8 +397,8 @@
     min-width: 15.625rem;
     background: #1D1F22;
     padding: 1.6875rem 1.5rem 2rem;
-    transition: 600ms ease;
-    transition: position, left;
+    transition: 500ms ease;
+    transition-property: position, left;
 
     .topSide{
         .sideLogo{
