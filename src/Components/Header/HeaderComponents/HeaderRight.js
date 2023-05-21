@@ -25,6 +25,25 @@ const HeaderRight = () => {
     setTimeout(() => {
       setSaved((c) => (c = false));
     }, 1250);
+
+    saveTextToFile();
+  };
+
+  const saveTextToFile = () => {
+    const text = files[current].content;
+    const filename = files[current].name;
+
+    const anchor = document.createElement("a");
+    const blob = new Blob([text], { type: "text/plain" });
+    anchor.download = filename;
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target = "_blank";
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+
+    anchor.click();
+
+    document.body.removeChild(anchor);
   };
 
   return (
