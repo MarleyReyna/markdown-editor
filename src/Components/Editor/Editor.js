@@ -7,10 +7,10 @@ const Editor = () => {
   const darkmode = useSelector((state) => state.darkmode.darkmode);
 
   return (
-    <main className={darkmode ? "editor dark" : "editor"}>
+    <section className={darkmode ? "editor dark" : "editor"}>
       <Markdown />
       <Preview />
-    </main>
+    </section>
   );
 };
 

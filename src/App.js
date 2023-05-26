@@ -23,10 +23,10 @@ function App() {
       <Suspense fallback={null}>
         <Delete />
       </Suspense>
-      <section className="main-section">
+      <main className="main-section">
         <Header />
         <Editor />
-      </section>
+      </main>
     </div>
   );
 }
