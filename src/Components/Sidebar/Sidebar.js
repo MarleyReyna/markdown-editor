@@ -4,10 +4,10 @@ import SidebarBottom from "./SidebarComponents/SidebarBottom";
 
 const Sidebar = () => {
   return (
-    <section className="sideMenu">
+    <header className="sideMenu">
       <SidebarTop />
       <SidebarBottom />
-    </section>
+    </header>
   );
 };
 

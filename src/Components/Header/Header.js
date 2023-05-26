@@ -7,10 +7,10 @@ const Header = () => {
   const darkmode = useSelector((state) => state.darkmode.darkmode);
 
   return (
-    <header className={darkmode ? "header dark" : "header"}>
+    <section className={darkmode ? "header dark" : "header"}>
       <HeaderLeft />
       <HeaderRight />
-    </header>
+    </section>
   );
 };
 
