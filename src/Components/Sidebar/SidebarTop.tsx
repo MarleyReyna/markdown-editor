@@ -16,7 +16,7 @@ const SidebarTop = () => {
     const newDoc = {
       id: files.length,
       createdAt: date,
-      name: "untitled-document.md",
+      name: "untitled-document",
       content: "",
     };
 
