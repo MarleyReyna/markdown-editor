@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const darkmode =
   localStorage.getItem("darkmode") !== null
-    ? JSON.parse(localStorage.getItem("darkmode"))
+    ? JSON.parse(localStorage.getItem("darkmode") || "")
     : false;
 
-const setDarkModeToLocalStorage = (darkmode) => {
+const setDarkModeToLocalStorage = (darkmode: boolean) => {
   localStorage.setItem("darkmode", JSON.stringify(darkmode));
 };
 

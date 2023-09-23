@@ -1,16 +1,17 @@
-import React, { useState } from "react";
 import $ from "jquery";
+import { useState } from "react";
+import {type RootState} from "../../lib/types";
 import { useSelector, useDispatch } from "react-redux";
-import { setFiles } from "../../../Redux/filesSlice";
-import { setShowDelete } from "../../../Redux/showDeleteSlice";
+import { setFiles } from "../../Redux/filesSlice";
+import { setShowDelete } from "../../Redux/showDeleteSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderRight = () => {
   const dispatch = useDispatch();
   const [saved, setSaved] = useState(false);
-  const files = useSelector((state) => state.files.files);
-  const current = useSelector((state) => state.files.current);
+  const files = useSelector((state: RootState) => state.files.files);
+  const current = useSelector((state: RootState) => state.files.current);
 
   const saveDocument = () => {
     // Make a copy of the current files and update state
@@ -57,7 +58,7 @@ const HeaderRight = () => {
         ) : (
           <FontAwesomeIcon icon={faCheck} className="check" />
         )}
-        {saved ? "Saved" : "Save Changes"}
+        {saved ? "Saved" : "Download"}
       </button>
     </div>
   );

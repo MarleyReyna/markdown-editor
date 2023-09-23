@@ -1,14 +1,14 @@
-import React from "react";
+import {type RootState} from "../../lib/types"
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowMarkdown } from "../../../Redux/showMarkdownSlice";
+import { setShowMarkdown } from "../../Redux/showMarkdownSlice";
 
 const Preview = () => {
   const dispatch = useDispatch();
-  const files = useSelector((state) => state.files.files);
-  const current = useSelector((state) => state.files.current);
-  const show = useSelector((state) => state.showMarkdown.showMarkdown);
+  const files = useSelector((state: RootState) => state.files.files);
+  const current = useSelector((state: RootState) => state.files.current);
+  const show = useSelector((state: RootState) => state.showMarkdown.showMarkdown);
 
   return (
     <div

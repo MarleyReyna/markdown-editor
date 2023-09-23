@@ -1,16 +1,17 @@
+import "./assets/App.scss";
+import "./assets/Components.scss";
 import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
+import Editor from "./Pages/Editor/Editor";
 import Header from "./Components/Header/Header";
-import Editor from "./Components/Editor/Editor";
-import "./App.scss";
-import "./Components/Components.scss";
+import { useSelector } from "react-redux";
+import { type RootState } from "./lib/types";
 
 const Sidebar = React.lazy(() => import("./Components/Sidebar/Sidebar"));
-const Delete = React.lazy(() => import("./Components/Delete/Delete"));
+const Delete = React.lazy(() => import("./Components/Delete"));
 
 function App() {
-  const darkmode = useSelector((state) => state.darkmode.darkmode);
-  const showDelete = useSelector((state) => state.showDelete.showDelete);
+  const darkmode = useSelector((state: RootState) => state.darkmode.darkmode);
+  const showDelete = useSelector((state: RootState) => state.showDelete.showDelete);
 
   return (
     <div

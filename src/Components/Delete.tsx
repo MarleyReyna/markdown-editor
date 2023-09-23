@@ -1,19 +1,16 @@
-import React, { useRef, useEffect } from "react";
-import { useSpring, animated } from "react-spring";
+import { useRef, useEffect } from "react";
+import {type RootState} from "../lib/types";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowDelete, setShowDeleteFalse } from "../../Redux/showDeleteSlice";
-import { deleteFiles, setCurrent } from "../../Redux/filesSlice";
+import { setShowDelete, setShowDeleteFalse } from "../Redux/showDeleteSlice";
+import { deleteFiles, setCurrent } from "../Redux/filesSlice";
 
 const Delete = () => {
   const dispatch = useDispatch();
-  const darkmode = useSelector((state) => state.darkmode.darkmode);
-  const showDelete = useSelector((state) => state.showDelete.showDelete);
-  const files = useSelector((state) => state.files.files);
-  const current = useSelector((state) => state.files.current);
-
-  const styleProps = useSpring({
-    opacity: showDelete ? 1 : 0,
-  });
+  let deleteRef = useRef<HTMLDivElement>(null);
+  const darkmode = useSelector((state: RootState) => state.darkmode.darkmode);
+  const showDelete = useSelector((state: RootState) => state.showDelete.showDelete);
+  const files = useSelector((state: RootState) => state.files.files);
+  const current = useSelector((state: RootState) => state.files.current);
 
   const deleteFile = () => {
     //  Preventing the user from deleting a file if only one exists
@@ -35,10 +32,9 @@ const Delete = () => {
   };
 
   // Sets showDelete to false if area outide modal is clicked
-  let deleteRef = useRef();
   useEffect(() => {
-    let handler = (e) => {
-      if (!deleteRef.current?.contains(e.target)) {
+    let handler = (e: MouseEvent) => {
+      if (deleteRef.current && !deleteRef.current.contains(e.target as Node)) {
         dispatch(setShowDeleteFalse());
       }
     };
@@ -51,21 +47,20 @@ const Delete = () => {
   });
 
   return (
-    <animated.section
+    <div
       className={showDelete ? "delete active" : "delete"}
       id={darkmode ? "deleteDark" : "delete"}
       ref={deleteRef}
-      style={styleProps}
     >
       <h1>Delete this document</h1>
       <p>
         Are you sure you want to delete the 'welcome.md' document and its
         contents? This action cannot be reversed.
       </p>
-      <button onClick={deleteFile} tabIndex="1">
+      <button onClick={deleteFile} tabIndex={1}>
         Confirm and Delete
       </button>
-    </animated.section>
+    </div>
   );
 };
 

@@ -1,21 +1,21 @@
-import React from "react";
 import $ from "jquery";
+import { type RootState } from "../../lib/types";
 import { useSelector, useDispatch } from "react-redux";
-import { setFiles } from "../../../Redux/filesSlice";
+import { setFiles } from "../../Redux/filesSlice";
 
 const showSideMenu = () => {
   $(".sideMenu").toggleClass("active");
   $(".main-section").toggleClass("menu");
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 };
 
 const HeaderLeft = () => {
   const dispatch = useDispatch();
-  const files = useSelector((state) => state.files.files);
-  const current = useSelector((state) => state.files.current);
+  const files = useSelector((state: RootState) => state.files.files);
+  const current = useSelector((state: RootState) => state.files.current);
 
   const submitTitle = () => {
     const filesCopy = JSON.parse(JSON.stringify(files));

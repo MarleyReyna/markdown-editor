@@ -1,10 +1,10 @@
-import React from "react";
+import { type RootState } from "../../lib/types";
 import { useSelector, useDispatch } from "react-redux";
-import { setDarkmode } from "../../../Redux/darkmodeSlice";
+import { setDarkmode } from "../../Redux/darkmodeSlice";
 
 const SidebarBottom = () => {
   const dispatch = useDispatch();
-  const darkmode = useSelector((state) => state.darkmode.darkmode);
+  const darkmode = useSelector((state: RootState) => state.darkmode.darkmode);
 
   return (
     <div className={darkmode ? "darkContainer active" : "darkContainer"}>

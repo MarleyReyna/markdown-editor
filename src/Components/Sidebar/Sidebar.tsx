@@ -1,6 +1,5 @@
-import React from "react";
-import SidebarTop from "./SidebarComponents/SidebarTop";
-import SidebarBottom from "./SidebarComponents/SidebarBottom";
+import SidebarTop from "./SidebarTop";
+import SidebarBottom from "./SidebarBottom";
 
 const Sidebar = () => {
   return (

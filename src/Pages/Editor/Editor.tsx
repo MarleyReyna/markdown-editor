@@ -1,10 +1,10 @@
-import React from "react";
-import Markdown from "./EditorComponents/Markdown";
-import Preview from "./EditorComponents/Preview";
+import {type RootState} from "../../lib/types";
+import Markdown from "./Markdown";
+import Preview from "./Preview";
 import { useSelector } from "react-redux";
 
 const Editor = () => {
-  const darkmode = useSelector((state) => state.darkmode.darkmode);
+  const darkmode = useSelector((state: RootState) => state.darkmode.darkmode);
 
   return (
     <section className={darkmode ? "editor dark" : "editor"}>

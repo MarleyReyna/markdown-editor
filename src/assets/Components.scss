@@ -113,7 +113,7 @@
             .check{
                 font-size: 1rem;
                 color: white;
-                animation: fadeIn 500ms ease;
+                animation: fadeInTranslateDown 500ms ease;
             }
         }
 
@@ -596,6 +596,7 @@
 
 .delete.active{
     display: initial;
+    animation: fadeIn 500ms ease;
 }
 
 #deleteDark{
