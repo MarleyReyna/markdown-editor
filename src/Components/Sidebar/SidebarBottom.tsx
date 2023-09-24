@@ -10,7 +10,7 @@ const SidebarBottom = () => {
     <div className={darkmode ? "darkContainer active" : "darkContainer"}>
       <img src="/assets/icon-dark-mode.svg" className="moon" alt="dark mode" />
       <button className="darkToggle" onClick={() => dispatch(setDarkmode())}>
-        <img className="circle" src="/assets/icon-circle.svg" alt="" />
+        <img className="circle" src="/assets/icon-circle.png" alt="" />
         Toggle Darkmode
       </button>
       <img src="/assets/icon-light-mode.svg" className="sun" alt="light mode" />
